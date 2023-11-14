@@ -23,7 +23,7 @@ namespace Entities.Concrete
 
         List<RecipeIngredient> RecipeIngredients { get; set; } //Navigation property
 
-        public int CuisineId { get; set; }
+        public int? CuisineId { get; set; }
         public Cuisine Cuisine { get; set; } //Navigation property
 
     }
