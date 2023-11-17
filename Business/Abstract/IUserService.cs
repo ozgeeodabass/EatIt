@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IUserSevice
+    public interface IUserService
     {
         List<User> GetAll();
         void Update(int id, User user);
         void Delete(int id);
+        void Add(User user);
 
     }
 }
