@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entities.Concrete
@@ -12,8 +13,9 @@ namespace Entities.Concrete
     {
         public int IngredientId { get; set; }
         public string IngredientName { get; set; }
-       
-        public virtual List<RecipeIngredient> RecipeIngredients { get; } = new List<RecipeIngredient>();
+
+        [JsonIgnore]
+        public virtual List<RecipeIngredient>? RecipeIngredients { get; } = new List<RecipeIngredient>();
 
 
     }

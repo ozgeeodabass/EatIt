@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entities.Concrete
@@ -11,6 +12,8 @@ namespace Entities.Concrete
     {
         public int CuisineId { get; set; }
         public string CuisineName { get; set; }
-        public virtual List<Recipe> Recipes { get; set; }
+
+        [JsonIgnore]
+        public virtual List<Recipe>? Recipes { get; set; }
     }
 }
