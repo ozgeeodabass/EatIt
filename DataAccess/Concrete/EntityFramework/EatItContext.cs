@@ -17,7 +17,8 @@ namespace DataAccess.Concrete.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<RecipeIngredient>().HasNoKey();
+            modelBuilder.Entity<RecipeIngredient>()
+            .HasKey(t => new { t.RecipeId, t.IngredientId });
 
         }
         public DbSet<User> Users { get; set; }

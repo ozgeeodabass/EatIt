@@ -1,6 +1,7 @@
 ﻿using Entities.Abstract;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,8 @@ namespace Entities.Concrete
     {
         public int IngredientId { get; set; }
         public string IngredientName { get; set; }
-        List<RecipeIngredient> RecipeIngredients { get; set; }
+       
+        public virtual List<RecipeIngredient> RecipeIngredients { get; } = new List<RecipeIngredient>();
 
 
     }

@@ -11,6 +11,6 @@ namespace Entities.Concrete
     {
         public int CuisineId { get; set; }
         public string CuisineName { get; set; }
-        public List<Recipe> Recipes { get; set; }
+        public virtual List<Recipe> Recipes { get; set; }
     }
 }
