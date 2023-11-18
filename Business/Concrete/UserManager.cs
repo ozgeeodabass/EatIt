@@ -34,6 +34,16 @@ namespace Business.Concrete
             return _userDal.GetAll();
         }
 
+        public User GetById(int id)
+        {
+            return _userDal.Get(i=>i.UserId==id);
+        }
+
+        public User GetByUserName(string name)
+        {
+            return _userDal.Get(i => i.UserName == name);
+        }
+
         public void Update(int id, User user)
         {
             _userDal.Update(id, user);

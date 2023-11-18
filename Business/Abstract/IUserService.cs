@@ -10,6 +10,8 @@ namespace Business.Abstract
     public interface IUserService
     {
         List<User> GetAll();
+        User GetById(int id);
+        User GetByUserName(string name);
         void Update(int id, User user);
         void Delete(int id);
         void Add(User user);
