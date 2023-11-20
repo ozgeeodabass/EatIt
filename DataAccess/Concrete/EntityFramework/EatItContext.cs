@@ -20,6 +20,7 @@ namespace DataAccess.Concrete.EntityFramework
             modelBuilder.Entity<RecipeIngredient>()
             .HasKey(t => new { t.RecipeId, t.IngredientId });
 
+
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Cuisine> Cuisines { get; set; }

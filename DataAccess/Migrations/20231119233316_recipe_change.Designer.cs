@@ -4,6 +4,7 @@ using DataAccess.Concrete.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(EatItContext))]
-    partial class EatItContextModelSnapshot : ModelSnapshot
+    [Migration("20231119233316_recipe_change")]
+    partial class recipe_change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +39,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("CuisineId");
 
-                    b.ToTable("Cuisines", (string)null);
+                    b.ToTable("Cuisines");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Ingredient", b =>
@@ -53,7 +56,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("IngredientId");
 
-                    b.ToTable("Ingredients", (string)null);
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Recipe", b =>
@@ -92,7 +95,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Recipes", (string)null);
+                    b.ToTable("Recipes");
                 });
 
             modelBuilder.Entity("Entities.Concrete.RecipeIngredient", b =>
@@ -111,7 +114,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("RecipeIngredients", (string)null);
+                    b.ToTable("RecipeIngredients");
                 });
 
             modelBuilder.Entity("Entities.Concrete.User", b =>
@@ -128,7 +131,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Entities.Concrete.Recipe", b =>

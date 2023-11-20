@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Reflection.Metadata;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Entities.Concrete
@@ -19,8 +20,8 @@ namespace Entities.Concrete
 
         public string RecipeName { get; set; }
         public string RecipeDescription { get; set;}
-        public TimeSpan PreparationTime { get; set; }
-        public TimeSpan CookingTime { get; set; }
+        public string PreparationTime { get; set; }
+        public string CookingTime { get; set; }
         public virtual List<RecipeIngredient> RecipeIngredients { get; } = new List<RecipeIngredient>(); //Navigation property
 
         public int? CuisineId { get; set; }
