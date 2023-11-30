@@ -19,6 +19,6 @@ namespace Entities.Concrete
         public string CuisineName { get; set; }
 
         [JsonIgnore]
-        public virtual List<Recipe>? Recipes { get; set; }
+        public virtual List<Recipe> Recipes { get; } = new List<Recipe>();
     }
 }

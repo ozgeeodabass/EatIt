@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfRecipeDal: EfEntityDalBase<Recipe, EatItContext>, IRecipeDal
+    public class EfRecipeDal : EfEntityDalBase<Recipe, EatItContext>, IRecipeDal
     {
     }
 }

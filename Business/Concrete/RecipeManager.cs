@@ -38,10 +38,10 @@ namespace Business.Concrete
             return _recipeDal.GetAll(r=>r.CuisineId == id);
         }
 
-        public List<Recipe> GetAllRecipesByIngredientId(int id)
-        {
-            return _recipeDal.GetAll(r => r.RecipeIngredients.Contains(r.RecipeIngredients.SingleOrDefault(x=>x.IngredientId==id)));
-        }
+        //public List<Recipe> GetAllRecipesByIngredientId(int id)
+        //{
+        //    return _recipeDal.GetAll(r => r.RecipeIngredients.Contains(r.RecipeIngredients.SingleOrDefault(x=>x.IngredientId==id)));
+        //}
 
         public List<Recipe> GetAllRecipesByUserId(int id)
         {

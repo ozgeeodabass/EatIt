@@ -39,12 +39,6 @@ namespace EatItWebApi.Controllers
             return _service.GetAllRecipesByCuisineId(id);
         }
 
-        [HttpGet("{id:int}", Name = "GetRecipesByIngredient")]
-        public List<Recipe> GetAllRecipesByIngredientId([FromRoute]int id)
-        {
-            return _service.GetAllRecipesByIngredientId(id);
-        }
-
         [HttpGet("{id:int}", Name = "GetRecipesByUser")]
         public List<Recipe> GetAllRecipesByUserId([FromRoute]int id)
         {

@@ -13,7 +13,7 @@ namespace Business.Abstract
         Recipe GetById(int id);
         List<Recipe> GetAllRecipesByUserId(int id);
         Recipe GetRecipeByName(string name);
-        List<Recipe> GetAllRecipesByIngredientId(int id);
+       // List<Recipe> GetAllRecipesByIngredientId(int id);
         List<Recipe> GetAllRecipesByCuisineId(int id);
         void Update(int id, Recipe recipe);
         void Delete(int id);
