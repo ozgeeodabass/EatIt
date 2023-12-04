@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,7 @@ namespace Business.Abstract
         void Update(int id, Recipe recipe);
         void Delete(int id);
         void Add(Recipe recipe);
+        List<RecipeDetailDto> GetRecipesDetail();
+        RecipeDetailDto GetRecipeDetail(int id);
     }
 }

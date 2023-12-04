@@ -23,7 +23,7 @@ namespace Entities.Concrete
         public string PreparationTime { get; set; }
         public string CookingTime { get; set; }
 
-        public virtual List<Ingredient> Ingredients { get; set; } 
+        public List<Ingredient> Ingredients { get; set; } 
 
         public int CuisineId { get; set; }
         public Cuisine Cuisine { get; set; } = null!; //Navigation property

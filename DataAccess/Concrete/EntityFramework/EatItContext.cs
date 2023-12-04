@@ -18,20 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Recipe>()
-       .HasOne(r => r.Cuisine)
-       .WithMany(c => c.Recipes)
-       .HasForeignKey(r => r.CuisineId)
-       .IsRequired();
-
-            modelBuilder.Entity<Recipe>()
-      .HasOne(r => r.User)
-      .WithMany(u => u.Recipes)
-      .HasForeignKey(r => r.UserId)
-      .IsRequired();
-
-      
-
+     
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Cuisine> Cuisines { get; set; }

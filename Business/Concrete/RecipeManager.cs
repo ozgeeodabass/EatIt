@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,11 @@ namespace Business.Concrete
             _recipeDal.Add(recipe);
         }
 
+        public List<RecipeDetailDto> GetRecipesDetail()
+        {
+            return _recipeDal.GetRecipesDetail();
+        }
+
         public void Delete(int id)
         {
             _recipeDal.Delete(id); 
@@ -38,10 +44,6 @@ namespace Business.Concrete
             return _recipeDal.GetAll(r=>r.CuisineId == id);
         }
 
-        //public List<Recipe> GetAllRecipesByIngredientId(int id)
-        //{
-        //    return _recipeDal.GetAll(r => r.RecipeIngredients.Contains(r.RecipeIngredients.SingleOrDefault(x=>x.IngredientId==id)));
-        //}
 
         public List<Recipe> GetAllRecipesByUserId(int id)
         {
@@ -61,6 +63,11 @@ namespace Business.Concrete
         public void Update(int id, Recipe recipe)
         {
             _recipeDal.Update(id, recipe);
+        }
+
+        public RecipeDetailDto GetRecipeDetail(int id)
+        {
+           return _recipeDal.GetRecipeDetail(id);
         }
     }
 }

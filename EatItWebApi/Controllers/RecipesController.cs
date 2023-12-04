@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,11 +46,18 @@ namespace EatItWebApi.Controllers
             return _service.GetAllRecipesByUserId(id);
         }
 
-        [HttpPost(Name = "CreateRecipe")]
-        public void Add([FromBody] Recipe recipe)
+        [HttpGet(Name = "GetRecipesDetail")]
+        public List<RecipeDetailDto> GetRecipesDetail()
         {
-            _service.Add(recipe);
+            return _service.GetRecipesDetail();
         }
+
+        [HttpGet("{id:int}", Name = "GetRecipeDetailById")]
+        public RecipeDetailDto GetRecipeDetail([FromRoute] int id)
+        {
+            return _service.GetRecipeDetail(id);
+        }
+
 
         [HttpDelete("{id:int}", Name = "DeleteOneRecipe")]
         public void Delete([FromRoute] int id)
