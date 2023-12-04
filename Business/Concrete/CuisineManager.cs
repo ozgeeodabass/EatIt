@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,34 +19,61 @@ namespace Business.Concrete
         {
             _cuisineDal = cuisineDal;
         }
-        public void Add(Cuisine user)
+        public IResult Add(Cuisine user)
         {
-            _cuisineDal.Add(user);
+            try
+            {
+                _cuisineDal.Add(user);
+                return new SuccessResult(Messages.added);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(Messages.failed + " : " + ex.ToString());
+            }
+
         }
 
-        public void Delete(int id)
+        public IResult Delete(int id)
         {
-           _cuisineDal.Delete(id);
+            try
+            {
+                _cuisineDal.Delete(id);
+                return new SuccessResult(Messages.deleted);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(Messages.failed + " : " + ex.ToString());
+            }
+
         }
 
-        public List<Cuisine> GetAll()
+        public IDataResult<List<Cuisine>> GetAll()
         {
-            return _cuisineDal.GetAll();
+            return new SuccessDataResult<List<Cuisine>>(_cuisineDal.GetAll(), Messages.success);
         }
 
-        public Cuisine GetByCuisineName(string name)
+        public IDataResult<Cuisine> GetByCuisineName(string name)
         {
-            return _cuisineDal.Get(c=>c.CuisineName==name);
+            return new SuccessDataResult<Cuisine>(_cuisineDal.Get(c => c.CuisineName == name), Messages.success);
         }
 
-        public Cuisine GetById(int id)
+        public IDataResult<Cuisine> GetById(int id)
         {
-            return _cuisineDal.Get(c => c.CuisineId == id);
+            return new SuccessDataResult<Cuisine>(_cuisineDal.Get(c => c.CuisineId == id), Messages.success);
         }
 
-        public void Update(int id, Cuisine cuisine)
+        public IResult Update(int id, Cuisine cuisine)
         {
-           _cuisineDal.Update(id, cuisine); 
+            try
+            {
+                _cuisineDal.Update(id, cuisine);
+                return new SuccessResult(Messages.updated);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorResult(Messages.failed + " : " + ex.ToString());
+            }
+
         }
     }
 }

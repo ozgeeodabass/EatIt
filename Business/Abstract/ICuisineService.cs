@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ namespace Business.Abstract
 {
     public interface ICuisineService
     {
-        List<Cuisine> GetAll();
-        Cuisine GetById(int id);
-        Cuisine GetByCuisineName(string name);
-        void Update(int id, Cuisine cuisine);
-        void Delete(int id);
-        void Add(Cuisine user);
+        IDataResult<List<Cuisine>> GetAll();
+        IDataResult<Cuisine> GetById(int id);
+        IDataResult<Cuisine> GetByCuisineName(string name);
+        IResult Update(int id, Cuisine cuisine);
+        IResult Delete(int id);
+        IResult Add(Cuisine user);
     }
 }

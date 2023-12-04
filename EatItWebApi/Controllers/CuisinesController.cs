@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EatItWebApi.Controllers
@@ -17,39 +17,39 @@ namespace EatItWebApi.Controllers
         }
 
         [HttpGet(Name = "GetAllCuisines")]
-        public List<Cuisine> GetAll()
+        public IDataResult<List<Cuisine>> GetAll()
         {
             return _service.GetAll();
         }
 
         [HttpGet("{id:int}", Name = "GetOneCuisineById")]
-        public Cuisine GetById([FromRoute] int id)
+        public IDataResult<Cuisine> GetById([FromRoute] int id)
         {
             return _service.GetById(id);
         }
 
         [HttpGet("{name}", Name = "GetOneCuisineByUserName")]
-        public Cuisine GetByCuisineName([FromRoute] string name)
+        public IDataResult<Cuisine> GetByCuisineName([FromRoute] string name)
         {
             return _service.GetByCuisineName(name);
         }
 
         [HttpPost(Name = "CreateCuisine")]
-        public void Add([FromBody] Cuisine cuisine)
+        public Core.Utilities.Results.IResult Add([FromBody] Cuisine cuisine)
         {
-            _service.Add(cuisine);
+            return _service.Add(cuisine);
         }
 
         [HttpDelete("{id:int}", Name = "DeleteOneCuisine")]
-        public void Delete([FromRoute] int id)
+        public Core.Utilities.Results.IResult Delete([FromRoute] int id)
         {
-            _service.Delete(id);
+            return _service.Delete(id);
         }
 
         [HttpPut("{id:int}", Name = "UpdateOneCuisine")]
-        public void Update([FromRoute] int id, [FromBody] Cuisine cuisine)
+        public Core.Utilities.Results.IResult Update([FromRoute] int id, [FromBody] Cuisine cuisine)
         {
-            _service.Update(id, cuisine);
+           return _service.Update(id, cuisine);
         }
     }
 }
