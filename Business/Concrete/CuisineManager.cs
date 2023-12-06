@@ -28,7 +28,7 @@ namespace Business.Concrete
             }
             catch (Exception ex)
             {
-                return new ErrorResult(Messages.failed + " : " + ex.ToString());
+                return new ErrorResult(Messages.failed);
             }
 
         }

@@ -14,43 +14,61 @@ namespace EatItWebApi.Controllers
 
         public IngredientsController(IIngredientService ingredientService)
         {
-                _service = ingredientService;
+            _service = ingredientService;
         }
 
-        [HttpGet(Name = "GetAllIngredients")]
-        public List<Ingredient> GetAll()
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
-            return _service.GetAll();
+            var result = _service.GetAll();
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{id:int}", Name = "GetOneIngredientById")]
-        public Ingredient GetById([FromRoute] int id)
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
         {
-            return _service.GetById(id);
+            var result = _service.GetById(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{name}", Name = "GetOneIngredientByName")]
-        public Ingredient GetByIngredientName([FromRoute] string name)
+        [HttpGet("getbyname")]
+        public IActionResult GetByIngredientName(string name)
         {
-            return _service.GetByIngredientName(name);
+            var result = _service.GetByIngredientName(name);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpPost(Name = "CreateIngredient")]
-        public void Add([FromBody] Ingredient ingredient)
+        [HttpPost("post")]
+        public IActionResult Add(Ingredient ingredient)
         {
-            _service.Add(ingredient);
+            var result = _service.Add(ingredient);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpDelete("{id:int}", Name = "DeleteOneIngredient")]
-        public void Delete([FromRoute] int id)
+        [HttpDelete("delete")]
+        public IActionResult Delete(int id)
         {
-            _service.Delete(id);
+            var result = _service.Delete(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpPut("{id:int}", Name = "UpdateOneIngredient")]
-        public void Update([FromRoute] int id, [FromBody] Ingredient ingredient)
+        [HttpPut("update")]
+        public IActionResult Update(int id, Ingredient ingredient)
         {
-            _service.Update(id, ingredient);
+            var result = _service.Update(id, ingredient);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
     }
 

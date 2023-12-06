@@ -17,58 +17,86 @@ namespace EatItWebApi.Controllers
             _service = service;
         }
 
-        [HttpGet(Name = "GetAllRecipes")]
-        public List<Recipe> GetAll()
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
-            return _service.GetAll();
+            var result = _service.GetAll();
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{id:int}", Name = "GetOneRecipeById")]
-        public Recipe GetById([FromRoute] int id)
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
         {
-            return _service.GetById(id);
+            var result = _service.GetById(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{name}", Name = "GetOneRecipeByName")]
-        public Recipe GetByRecipeName([FromRoute] string name)
+        [HttpGet("getbyname")]
+        public IActionResult GetByRecipeName(string name)
         {
-            return _service.GetRecipeByName(name);
+            var result = _service.GetRecipeByName(name);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{id:int}", Name = "GetRecipesByCuisine")]
-        public List<Recipe> GetAllRecipesByCuisineId([FromRoute]int id) { 
-            return _service.GetAllRecipesByCuisineId(id);
+        [HttpGet("getallbycuisineid")]
+        public IActionResult GetAllRecipesByCuisineId(int id)
+        {
+            var result = _service.GetAllRecipesByCuisineId(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{id:int}", Name = "GetRecipesByUser")]
-        public List<Recipe> GetAllRecipesByUserId([FromRoute]int id)
+        [HttpGet("getallbyuserid")]
+        public IActionResult GetAllRecipesByUserId(int id)
         {
-            return _service.GetAllRecipesByUserId(id);
+            var result = _service.GetAllRecipesByUserId(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet(Name = "GetRecipesDetail")]
-        public List<RecipeDetailDto> GetRecipesDetail()
+        [HttpGet("getallwithdetail")]
+        public IActionResult GetRecipesDetail()
         {
-            return _service.GetRecipesDetail();
+            var result = _service.GetRecipesDetail();
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{id:int}", Name = "GetRecipeDetailById")]
-        public RecipeDetailDto GetRecipeDetail([FromRoute] int id)
+        [HttpGet("getwithdetail")]
+        public IActionResult GetRecipeDetail(int id)
         {
-            return _service.GetRecipeDetail(id);
+            var result = _service.GetRecipeDetail(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
 
-        [HttpDelete("{id:int}", Name = "DeleteOneRecipe")]
-        public void Delete([FromRoute] int id)
+        [HttpDelete("delete")]
+        public IActionResult Delete(int id)
         {
-            _service.Delete(id);
+            var result = _service.Delete(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpPut("{id:int}", Name = "UpdateOneRecipe")]
-        public void Update([FromRoute] int id, [FromBody] Recipe recipe)
+        [HttpPut("update")]
+        public IActionResult Update(int id, Recipe recipe)
         {
-            _service.Update(id, recipe);
+            var result = _service.Update(id, recipe);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
     }

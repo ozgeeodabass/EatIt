@@ -16,40 +16,58 @@ namespace EatItWebApi.Controllers
             _service = service;
         }
 
-        [HttpGet(Name = "GetAllCuisines")]
-        public IDataResult<List<Cuisine>> GetAll()
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
-            return _service.GetAll();
+            var result = _service.GetAll();
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{id:int}", Name = "GetOneCuisineById")]
-        public IDataResult<Cuisine> GetById([FromRoute] int id)
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
         {
-            return _service.GetById(id);
+            var result = _service.GetById(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{name}", Name = "GetOneCuisineByUserName")]
-        public IDataResult<Cuisine> GetByCuisineName([FromRoute] string name)
+        [HttpGet("getbyname")]
+        public IActionResult GetByCuisineName(string name)
         {
-            return _service.GetByCuisineName(name);
+            var result = _service.GetByCuisineName(name);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpPost(Name = "CreateCuisine")]
-        public Core.Utilities.Results.IResult Add([FromBody] Cuisine cuisine)
+        [HttpPost("post")]
+        public IActionResult Add(Cuisine cuisine)
         {
-            return _service.Add(cuisine);
+            var result = _service.Add(cuisine);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpDelete("{id:int}", Name = "DeleteOneCuisine")]
-        public Core.Utilities.Results.IResult Delete([FromRoute] int id)
+        [HttpDelete("delete")]
+        public IActionResult Delete(int id)
         {
-            return _service.Delete(id);
+            var result = _service.Delete(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpPut("{id:int}", Name = "UpdateOneCuisine")]
-        public Core.Utilities.Results.IResult Update([FromRoute] int id, [FromBody] Cuisine cuisine)
+        [HttpPut("update")]
+        public IActionResult Update(int id,Cuisine cuisine)
         {
-           return _service.Update(id, cuisine);
+            var result = _service.Update(id, cuisine);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
     }
 }

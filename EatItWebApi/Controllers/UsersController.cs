@@ -16,40 +16,58 @@ namespace EatItWebApi.Controllers
             _service = service;
         }
 
-        [HttpGet(Name ="GetAllUsers")]
-        public List<User> GetAll()
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
-           return _service.GetAll();
+            var result = _service.GetAll();
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{id:int}", Name = "GetOneUserById")]
-        public User GetById([FromRoute] int id)
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
         {
-            return _service.GetById(id);
+            var result = _service.GetById(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpGet("{name}", Name ="GetOneUserByUserName")]
-        public User GetByUserName([FromRoute] string name)
+        [HttpGet("getbyname")]
+        public IActionResult GetByUserName(string name)
         {
-            return _service.GetByUserName(name);
+            var result = _service.GetByUserName(name);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpPost(Name ="CreateUser")]
-        public void Add([FromBody] User user)
+        [HttpPost("post")]
+        public IActionResult Add(User user)
         {
-            _service.Add(user);
+            var result = _service.Add(user);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpDelete("{id:int}", Name ="DeleteOneUser")]
-        public void Delete([FromRoute] int id)
+        [HttpDelete("delete")]
+        public IActionResult Delete(int id)
         {
-            _service.Delete(id);
+            var result = _service.Delete(id);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
-        [HttpPut("{id:int}", Name ="UpdateOneUser")]
-        public void Update([FromRoute] int id, [FromBody] User user)
+        [HttpPut("update")]
+        public IActionResult Update(int id, User user)
         {
-            _service.Update(id, user);
+            var result = _service.Update(id, user);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
         }
 
 

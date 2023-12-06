@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Utilities.Results;
+using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
@@ -10,15 +11,15 @@ namespace Business.Abstract
 {
     public interface IRecipeService
     {
-        List<Recipe> GetAll();
-        Recipe GetById(int id);
-        List<Recipe> GetAllRecipesByUserId(int id);
-        Recipe GetRecipeByName(string name);
-        List<Recipe> GetAllRecipesByCuisineId(int id);
-        void Update(int id, Recipe recipe);
-        void Delete(int id);
-        void Add(Recipe recipe);
-        List<RecipeDetailDto> GetRecipesDetail();
-        RecipeDetailDto GetRecipeDetail(int id);
+        IDataResult<List<Recipe>> GetAll();
+        IDataResult<Recipe> GetById(int id);
+        IDataResult<List<Recipe>> GetAllRecipesByUserId(int id);
+        IDataResult<Recipe> GetRecipeByName(string name);
+        IDataResult<List<Recipe>> GetAllRecipesByCuisineId(int id);
+        IResult Update(int id, Recipe recipe);
+        IResult Delete(int id);
+        IResult Add(Recipe recipe);
+        IDataResult<List<RecipeDetailDto>> GetRecipesDetail();
+        IDataResult<RecipeDetailDto> GetRecipeDetail(int id);
     }
 }

@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -17,34 +19,62 @@ namespace Business.Concrete
         {
             _ingredientDal = ingredientDal;
         }
-        public void Add(Ingredient ingredient)
+        public IResult Add(Ingredient ingredient)
         {
-            _ingredientDal.Add(ingredient);
-        }
-
-        public void Delete(int id)
-        {
-           _ingredientDal.Delete(id);
-        }
-
-        public List<Ingredient> GetAll()
-        {
-           return _ingredientDal.GetAll();
-        }
-
-        public Ingredient GetById(int id)
-        {
-            return _ingredientDal.Get(i=>i.IngredientId == id);
-        }
-
-        public Ingredient GetByIngredientName(string name)
-        {
-            return _ingredientDal.Get(i => i.IngredientName == name);
+            try
+            {
+                _ingredientDal.Add(ingredient);
+                return new SuccessResult(Messages.added);
+            }
+            catch (Exception)
+            {
+                return new ErrorResult(Messages.failed);
+            }
 
         }
-        public void Update(int id, Ingredient ingredient)
+
+        public IResult Delete(int id)
         {
-           _ingredientDal.Update(id, ingredient);
+            try
+            {
+                _ingredientDal.Delete(id);
+                return new SuccessResult(Messages.deleted);
+            }
+            catch (Exception)
+            {
+                return new ErrorResult(Messages.failed);
+            }
+
+        }
+
+        public IDataResult<List<Ingredient>> GetAll()
+        {
+            return new SuccessDataResult<List<Ingredient>>(_ingredientDal.GetAll(), Messages.success);
+        }
+
+        public IDataResult<Ingredient> GetById(int id)
+        {
+            return new SuccessDataResult<Ingredient>(_ingredientDal.Get(i => i.IngredientId == id));
+        }
+
+        public IDataResult<Ingredient> GetByIngredientName(string name)
+        {
+            return new SuccessDataResult<Ingredient>(_ingredientDal.Get(i => i.IngredientName == name));
+
+        }
+        public IResult Update(int id, Ingredient ingredient)
+        {
+
+            try
+            {
+                _ingredientDal.Update(id, ingredient);
+                return new SuccessResult(Messages.updated);
+            }
+            catch (Exception)
+            {
+                return new ErrorResult(Messages.failed);
+            }
+
         }
     }
 }

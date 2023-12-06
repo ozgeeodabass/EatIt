@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -19,55 +21,82 @@ namespace Business.Concrete
         {
             _recipeDal = recipeDal;
         }
-        public void Add(Recipe recipe)
+        public IResult Add(Recipe recipe)
         {
-            _recipeDal.Add(recipe);
+            try
+            {
+                _recipeDal.Add(recipe);
+                return new SuccessResult(Messages.added);
+            }
+            catch (Exception)
+            {
+                return new ErrorResult(Messages.failed);
+            }
+
         }
 
-        public List<RecipeDetailDto> GetRecipesDetail()
+        public IDataResult<List<RecipeDetailDto>> GetRecipesDetail()
         {
-            return _recipeDal.GetRecipesDetail();
+            return new SuccessDataResult<List<RecipeDetailDto>>(_recipeDal.GetRecipesDetail(), Messages.success);
         }
 
-        public void Delete(int id)
+        public IResult Delete(int id)
         {
-            _recipeDal.Delete(id); 
+            try
+            {
+                _recipeDal.Delete(id);
+                return new SuccessResult(Messages.deleted);
+            }
+            catch (Exception)
+            {
+                return new ErrorResult(Messages.failed);
+            }
+
         }
 
-        public List<Recipe> GetAll()
+        public IDataResult<List<Recipe>> GetAll()
         {
-            return _recipeDal.GetAll();
+            return new SuccessDataResult<List<Recipe>>(_recipeDal.GetAll(), Messages.success);
         }
 
-        public List<Recipe> GetAllRecipesByCuisineId(int id)
+        public IDataResult<List<Recipe>> GetAllRecipesByCuisineId(int id)
         {
-            return _recipeDal.GetAll(r=>r.CuisineId == id);
+            return new SuccessDataResult<List<Recipe>>(_recipeDal.GetAll(r => r.CuisineId == id), Messages.success);
         }
 
 
-        public List<Recipe> GetAllRecipesByUserId(int id)
+        public IDataResult<List<Recipe>> GetAllRecipesByUserId(int id)
         {
-            return _recipeDal.GetAll(r => r.UserId == id);
+            return new SuccessDataResult<List<Recipe>>(_recipeDal.GetAll(r => r.UserId == id), Messages.success);
         }
 
-        public Recipe GetById(int id)
+        public IDataResult<Recipe> GetById(int id)
         {
-            return _recipeDal.Get(r=>r.RecipeId == id);
+            return new SuccessDataResult<Recipe>(_recipeDal.Get(r => r.RecipeId == id), Messages.success);
         }
 
-        public Recipe GetRecipeByName(string name)
+        public IDataResult<Recipe> GetRecipeByName(string name)
         {
-            return _recipeDal.Get(r => r.RecipeName == name);
+            return new SuccessDataResult<Recipe>(_recipeDal.Get(r => r.RecipeName == name), Messages.success);
         }
 
-        public void Update(int id, Recipe recipe)
+        public IResult Update(int id, Recipe recipe)
         {
-            _recipeDal.Update(id, recipe);
+            try
+            {
+                _recipeDal.Update(id, recipe);
+                return new SuccessResult(Messages.updated);
+            }
+            catch (Exception)
+            {
+                return new ErrorResult(Messages.failed);
+            }
+
         }
 
-        public RecipeDetailDto GetRecipeDetail(int id)
+        public IDataResult<RecipeDetailDto> GetRecipeDetail(int id)
         {
-           return _recipeDal.GetRecipeDetail(id);
+            return new SuccessDataResult<RecipeDetailDto>(_recipeDal.GetRecipeDetail(id),Messages.success);
         }
     }
 }
