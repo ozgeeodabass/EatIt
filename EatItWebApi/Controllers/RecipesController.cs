@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EatItWebApi.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class RecipesController : ControllerBase
     {
