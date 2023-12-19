@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -23,15 +25,16 @@ namespace Business.Concrete
         }
         public IResult Add(Recipe recipe)
         {
-            try
-            {
-                _recipeDal.Add(recipe);
-                return new SuccessResult(Messages.added);
-            }
-            catch (Exception)
-            {
-                return new ErrorResult(Messages.failed);
-            }
+
+            //validation
+            ValidationTool.Validate(new RecipeValidator(), recipe);
+
+            //busines rules 
+            //....
+
+            _recipeDal.Add(recipe);
+            return new SuccessResult(Messages.added);
+
 
         }
 
