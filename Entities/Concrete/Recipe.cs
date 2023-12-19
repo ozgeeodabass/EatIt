@@ -16,6 +16,7 @@ namespace Entities.Concrete
         public int RecipeId { get; set; }
 
         public int UserId { get; set; }
+     
         public User User { get; set; }  //Navigation property
 
         public string RecipeName { get; set; }
@@ -26,7 +27,8 @@ namespace Entities.Concrete
         public List<Ingredient> Ingredients { get; set; } 
 
         public int CuisineId { get; set; }
-        public Cuisine Cuisine { get; set; } = null!; //Navigation property
+ 
+       public Cuisine Cuisine { get; set; } = null!; //Navigation property
 
     }
 }

@@ -99,5 +99,13 @@ namespace EatItWebApi.Controllers
             return BadRequest(result.Message);
         }
 
+        [HttpPost("post")]
+        public IActionResult Add(Recipe recipe)
+        {
+            var result = _service.Add(recipe);
+            if (result.IsSuccess)
+                return Ok(result);
+            return BadRequest(result.Message);
+        }
     }
 }

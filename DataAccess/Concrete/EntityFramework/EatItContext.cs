@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +11,11 @@ using System.Threading.Tasks;
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EatItContext:DbContext
-    { 
+    {
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog= EatItDb; Integrated Security=true");
-
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
