@@ -35,7 +35,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("CuisineId");
 
-                    b.ToTable("Cuisines");
+                    b.ToTable("Cuisines", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concrete.Ingredient", b =>
@@ -52,7 +52,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("IngredientId");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredients", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concrete.OperationClaim", b =>
@@ -69,7 +69,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("OperationClaimId");
 
-                    b.ToTable("OperationClaim");
+                    b.ToTable("OperationClaim", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concrete.Recipe", b =>
@@ -108,7 +108,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipes", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concrete.User", b =>
@@ -145,7 +145,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("OperationClaimId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("IngredientRecipe", b =>
@@ -160,7 +160,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("RecipesRecipeId");
 
-                    b.ToTable("IngredientRecipe");
+                    b.ToTable("IngredientRecipe", (string)null);
                 });
 
             modelBuilder.Entity("Entities.Concrete.Recipe", b =>
